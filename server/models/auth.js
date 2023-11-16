@@ -1,13 +1,18 @@
 import mongoose from "mongoose";
+import passportLocalMongoose from "passport-local-mongoose";
 
 const { Schema } = mongoose;
 
 const authSchema = new Schema({
   firstName: String,
   lastName: String,
-  phoneNo: Number,
+  phoneno: Number,
   location: String,
-  aadhaarNo: Number,
+  aadharNo: Number,
+  password: String,
 });
 
-export const User = mongoose.model("User", authSchema);
+authSchema.plugin(passportLocalMongoose, { usernameField: "phoneno" });
+
+const User = mongoose.model("User", authSchema);
+export default User;
