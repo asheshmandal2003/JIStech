@@ -6,6 +6,7 @@ import session from "express-session";
 import passport from "passport";
 import User from "./models/auth.js";
 import authRouter from "./routers/auth.js";
+import otpRouter from "./routers/otpVerification.js";
 
 const app = express();
 if (process.env.NODE_ENV !== "production") dotenv.config();
@@ -32,6 +33,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/auth", authRouter);
+app.use("/", otpRouter);
 
 await mongoose
   .connect(process.env.MONGO_URL)
