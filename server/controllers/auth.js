@@ -1,16 +1,28 @@
+import dotenv from "dotenv";
 import User from "../models/auth.js";
+import mapboxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
+
+dotenv.config();
+
+const geocodingClient = mapboxGeocoding({
+  accessToken: process.env.MAPBOX_TOKEN,
+});
 
 export const signup = async (req, res) => {
-  const { firstName, lastName, phoneno, location, aadharNo, password } =
-    req.body;
-  console.log(firstName);
+  const { firstName, lastName, phoneNo, location, password } = req.body;
+  const geoData = await geocodingClient
+    .forwardGeocode({
+      query: location,
+      limit: 1,
+    })
+    .send();
   const newUser = new User({
     firstName,
     lastName,
-    phoneno,
+    phoneNo,
     location,
-    aadharNo,
   });
+  newUser.coordinates = geoData.body.features[0].geometry.coordinates;
   try {
     const registeredUser = await User.register(newUser, password);
     req.logIn(registeredUser, async (err) => {

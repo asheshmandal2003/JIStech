@@ -7,6 +7,7 @@ import passport from "passport";
 import User from "./models/auth.js";
 import authRouter from "./routers/auth.js";
 import otpRouter from "./routers/otpVerification.js";
+import sosRouter from "./routers/sos.js";
 
 const app = express();
 if (process.env.NODE_ENV !== "production") dotenv.config();
@@ -34,6 +35,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/auth", authRouter);
 app.use("/", otpRouter);
+app.use("/", sosRouter);
 
 await mongoose
   .connect(process.env.MONGO_URL)
