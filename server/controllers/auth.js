@@ -33,3 +33,11 @@ export const signup = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const signin = (req, res) => {
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    res.status(401).json({ message: "Invalid Username and Password!" });
+  }
+};
