@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 const authSchema = new Schema({
   firstName: String,
   lastName: String,
-  phoneNo: Number,
+  phoneNo: String,
   location: String,
   coordinates: [Number],
   aadharNo: Number,
