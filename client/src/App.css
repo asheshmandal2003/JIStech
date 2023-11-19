@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+body {
+  background: linear-gradient(90deg, #2C1E4A, #7276AB);
+  color: white;
+  padding-top: 70px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
