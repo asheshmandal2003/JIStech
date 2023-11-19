@@ -9,7 +9,8 @@ const geocodingClient = mapboxGeocoding({
 });
 
 export const signup = async (req, res) => {
-  const { firstName, lastName, phoneNo, location, password } = req.body;
+  let { firstName, lastName, phoneNo, location, password } = req.body;
+  phoneNo = "91" + phoneNo;
   const geoData = await geocodingClient
     .forwardGeocode({
       query: location,
