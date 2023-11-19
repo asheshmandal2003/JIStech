@@ -5,8 +5,9 @@ import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg
 const Footer = () => {
     return (
         <footer>
-            <Container fluid className="footer text-center p-5 m-5">
-                <Row className="mb-4">
+            <div style={{ borderTop: '1px solid #f2f2f2', width: '80%', margin: '0 auto' }}></div>
+            <Container fluid className="footer text-center mt-5">
+                <Row className="mb-4 p-2">
                     <Col>
                         <h4>About Us</h4>
                         <p>This is a security web application. These apps typically provide a plethora of features aimed at reducing the risks and anxieties that women may experience in various situations.</p>
@@ -19,7 +20,7 @@ const Footer = () => {
                         <p>FEATURES</p>
                     </Col>
                 </Row>
-                <Row className="mb-4">
+                <Row className="mb-4 p-2">
                     <Col>
                         <h4>Contact Us</h4>
                         <p>+91 3323751495</p>
@@ -39,7 +40,7 @@ const Footer = () => {
                 </Row>
 
                 <div style={{ border: '1px solid #f2f2f2', padding: '20px', margin: '20px' }}>
-                    <Row className="mb-4">
+                    <Row className="mb-4 p-2">
                         <Col>
                             <p>Copyright 2023 ALL Rights Reserved</p>
                         </Col>

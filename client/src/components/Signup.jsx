@@ -61,34 +61,30 @@ const Signup = (props) => {
       <div className="container h-100">
         <div className="row justify-content-sm-center h-100">
           <div className="col-md-6 col-sm-8">
-            <div className="card shadow my-5">
-              <div className="card-body p-5">
+            <div className="card shadow" style={{ margin: '2rem 0', padding: '3rem' }}>
+              <div className="card-body" style={{ height: '60vh' }}>
                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
-                <form
-                  onSubmit={formik.handleSubmit}
+                <form onSubmit={formik.handleSubmit}
                   className="needs-validation"
                   noValidate
                   autoComplete="off"
                 >
                   {/* Name */}
                   <div className="row">
-                    <div className="mb-3 col-md-6">
-                      <label className="mb-2 text-muted" htmlFor="firstName">
-                        Firstname
-                      </label>
+                    <div className="mb-4 col-md-6">
                       <input
                         id="firstName"
                         type="text"
-                        className={`form-control ${
-                          formik.touched.firstName &&
+                        className={`form-control ${formik.touched.firstName &&
                           formik.errors.firstName &&
                           "is-invalid"
-                        }`}
+                          }`}
                         name="firstName"
                         value={formik.values.firstName}
                         onChange={formik.handleChange}
                         required
                         autoFocus
+                        placeholder="First Name"
                       />
                       {formik.touched.firstName && formik.errors.firstName && (
                         <div className="invalid-feedback">
@@ -96,22 +92,19 @@ const Signup = (props) => {
                         </div>
                       )}
                     </div>
-                    <div className="col-md-6 mb-3">
-                      <label className="mb-2 text-muted" htmlFor="lastName">
-                        Lastname
-                      </label>
+                    <div className="col-md-6 mb-4">
                       <input
                         id="lastName"
                         type="text"
-                        className={`form-control ${
-                          formik.touched.lastName &&
+                        className={`form-control ${formik.touched.lastName &&
                           formik.errors.lastName &&
                           "is-invalid"
-                        }`}
+                          }`}
                         name="lastName"
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
                         required
+                        placeholder="Last Name"
                       />
                       {formik.touched.lastName && formik.errors.lastName && (
                         <div className="invalid-feedback">
@@ -121,22 +114,20 @@ const Signup = (props) => {
                     </div>
                   </div>
 
-                  <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="location">
-                      Location
-                    </label>
+                  <div className="mb-4">
                     <input
                       id="location"
                       type="text"
-                      className={`form-control ${
-                        formik.touched.location &&
+                      className={`form-control ${formik.touched.location &&
                         formik.errors.location &&
                         "is-invalid"
-                      }`}
+                        }`}
                       name="location"
                       value={formik.values.location}
                       onChange={formik.handleChange}
                       required
+                      placeholder="Location"
+
                     />
                     {formik.touched.location && formik.errors.location && (
                       <div className="invalid-feedback">
@@ -144,28 +135,24 @@ const Signup = (props) => {
                       </div>
                     )}
                   </div>
-
-                  {/* Email */}
-                  <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="phoneNo">
-                      Phone No
-                    </label>
+                  <div className="mb-4">
                     <div className="input-group">
-                      <span class="input-group-text" id="basic-addon1">
+                      <span className="input-group-text" id="basic-addon1">
                         +91
                       </span>
                       <input
                         id="phoneNo"
                         type="text"
-                        className={`form-control ${
-                          formik.touched.phoneNo &&
+                        className={`form-control ${formik.touched.phoneNo &&
                           formik.errors.phoneNo &&
                           "is-invalid"
-                        }`}
+                          }`}
                         name="phoneNo"
                         value={formik.values.phoneNo}
                         onChange={formik.handleChange}
                         required
+                        placeholder="Phone Number"
+
                       />
                     </div>
                     {formik.touched.phoneNo && formik.errors.phoneNo && (
@@ -174,24 +161,20 @@ const Signup = (props) => {
                       </div>
                     )}
                   </div>
-
-                  {/* Password */}
-                  <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="password">
-                      Password
-                    </label>
+                  <div className="mb-4">
                     <input
                       id="password"
                       type="password"
-                      className={`form-control ${
-                        formik.touched.password &&
+                      className={`form-control ${formik.touched.password &&
                         formik.errors.password &&
                         "is-invalid"
-                      }`}
+                        }`}
                       name="password"
                       value={formik.values.password}
                       onChange={formik.handleChange}
                       required
+                      placeholder="Password"
+
                     />
                     {formik.touched.password && formik.errors.password && (
                       <div className="invalid-feedback">
@@ -211,7 +194,7 @@ const Signup = (props) => {
                   </div>
                 </form>
               </div>
-              <div className="card-footer py-3 border-0">
+              <div className="card-footer py-4 border-0">
                 <div className="text-center">
                   Already have an account?{" "}
                   <a

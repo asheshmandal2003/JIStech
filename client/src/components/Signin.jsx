@@ -18,22 +18,22 @@ const Signin = (props) => {
                                     noValidate
                                     autoComplete="off"
                                 >
-                                    {/* Email */}
+                                    {/* Phone Number */}
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="email">
-                                            E-Mail Address
+                                        <label className="mb-2 text-muted" htmlFor="Phone Number">
+                                            Phone Number
                                         </label>
                                         <input
-                                            id="email"
-                                            type="email"
+                                            id="Phone Number"
+                                            type="Phone Number"
                                             className="form-control"
-                                            name="email"
+                                            name="Phone Number"
                                             value=""
                                             required
                                             autoFocus
                                         />
                                         <div className="invalid-feedback">
-                                            Email is invalid
+                                            Phone Number is invalid
                                         </div>
                                     </div>
 
