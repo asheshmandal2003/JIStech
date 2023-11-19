@@ -14,7 +14,7 @@ const Account = () => {
     };
 
     return (
-        <div>
+        <div className='mt-5'>
             {isSigningIn ? <Signin onSignupLinkClick={handleSignupLinkClick} /> : <Signup onSigninLinkClick={handleSigninLinkClick} />}
         </div>
     );

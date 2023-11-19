@@ -4,31 +4,49 @@ import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg
 
 const Footer = () => {
     return (
-        <Container fluid className="footer bg-dark text-white text-center py-5">
-            <Row className="mb-4">
-                <Col>
-                    <a href="/about" className="text-white mx-3 text-decoration-none">About</a>
-                    <a href="/contact" className="text-white mx-3 text-decoration-none">Contact</a>
-                    <a href="/privacy" className="text-white mx-3 text-decoration-none">Privacy Policy</a>
-                    <a href="/terms" className="text-white mx-3 text-decoration-none">Terms of Service</a>
-                </Col>
-            </Row>
-            <Row className="mb-4">
-                <Col>
-                    <p className="mb-0">Connect with us on social media:</p>
-                    <div>
-                        <a href="#" className="text-white mx-2"><FontAwesomeIcon icon={faFacebook} /></a>
-                        <a href="#" className="text-white mx-2"><FontAwesomeIcon icon={faTwitter} /></a>
-                        <a href="#" className="text-white mx-2"><FontAwesomeIcon icon={faInstagram} /></a>
-                    </div>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p className="mb-0">© 2023 Project X</p>
-                </Col>
-            </Row>
-        </Container>
+        <footer>
+            <Container fluid className="footer text-center p-5 m-5">
+                <Row className="mb-4">
+                    <Col>
+                        <h4>About Us</h4>
+                        <p>This is a security web application. These apps typically provide a plethora of features aimed at reducing the risks and anxieties that women may experience in various situations.</p>
+                    </Col>
+                    <Col>
+                        <h4>Our Services</h4>
+                        <p>HOME</p>
+                        <p>ABOUT US.</p>
+                        <p>SERVICES</p>
+                        <p>FEATURES</p>
+                    </Col>
+                </Row>
+                <Row className="mb-4">
+                    <Col>
+                        <h4>Contact Us</h4>
+                        <p>+91 3323751495</p>
+                        <p>shield321@#gmail.com</p>
+                        <p>A-11,Kalyani,West Bengal</p>
+                    </Col>
+                    <Col>
+                        <div style={{ border: '1px solid #f2f2f2', padding: '20px', margin: '20px' }}>
+                            <h4>Socials</h4>
+                            <div>
+                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faFacebook} /></a>
+                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faTwitter} /></a>
+                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faInstagram} /></a>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+
+                <div style={{ border: '1px solid #f2f2f2', padding: '20px', margin: '20px' }}>
+                    <Row className="mb-4">
+                        <Col>
+                            <p>Copyright 2023 ALL Rights Reserved</p>
+                        </Col>
+                    </Row>
+                </div>
+            </Container>
+        </footer>
     );
 };
 
