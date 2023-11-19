@@ -4,7 +4,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Signup = (props) => {
+const Signup = ({ setUser }) => {
   const navigate = useNavigate();
   const validations = yup.object({
     firstName: yup
@@ -51,7 +51,10 @@ const Signup = (props) => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        setUser(res.data);
+        navigate("/");
+      })
       .catch((err) => console.log(err.message));
     onSubmitProps.resetForm();
   }
@@ -214,11 +217,7 @@ const Signup = (props) => {
               <div className="card-footer py-3 border-0">
                 <div className="text-center">
                   Already have an account?{" "}
-                  <a
-                    href="#"
-                    onClick={props.onSigninLinkClick}
-                    className="text-dark"
-                  >
+                  <a href="#" className="text-dark">
                     Login
                   </a>
                 </div>
@@ -231,8 +230,8 @@ const Signup = (props) => {
   );
 };
 
-Signup.propTypes = {
-  onSigninLinkClick: PropTypes.func.isRequired,
-};
+// Signup.propTypes = {
+//   onSigninLinkClick: PropTypes.func.isRequired,
+// };
 
 export default Signup;
