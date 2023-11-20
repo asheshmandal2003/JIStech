@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function NavigationBar({ user }) {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const loggedIn = await isLoggedIn();
-      setIsLoggedIn(loggedIn);
-    };
-    checkLoginStatus();
-  }, []);
+  // useEffect(() => {
+  //   const checkLoginStatus = async () => {
+  //     const loggedIn = await isLoggedIn();
+  //     setIsLoggedIn(loggedIn);
+  //   };
+  //   checkLoginStatus();
+  // }, []);
 
   return (
     <Navbar expand="lg" className="py-3 fixed-top">

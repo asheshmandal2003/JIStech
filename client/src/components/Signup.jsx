@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -154,7 +153,7 @@ const Signup = ({ setUser }) => {
                       Phone No
                     </label>
                     <div className="input-group">
-                      <span class="input-group-text" id="basic-addon1">
+                      <span className="input-group-text" id="basic-addon1">
                         +91
                       </span>
                       <input
@@ -217,7 +216,10 @@ const Signup = ({ setUser }) => {
               <div className="card-footer py-3 border-0">
                 <div className="text-center">
                   Already have an account?{" "}
-                  <a href="#" className="text-dark">
+                  <a
+                    onClick={() => navigate("/auth/signin")}
+                    className="text-dark"
+                  >
                     Login
                   </a>
                 </div>

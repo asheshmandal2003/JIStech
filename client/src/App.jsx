@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/" element={<Home user={user} />} />
           {/* <Route path="/account" element={<Account />} /> */}
           <Route path="/auth/signup" element={<Signup setUser={setUser} />} />
-          <Route path="/auth/signin" element={<Signin />} />
+          <Route path="/auth/signin" element={<Signin setUser={setUser} />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Container>
