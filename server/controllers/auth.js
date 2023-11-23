@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import User from "../models/auth.js";
 import mapboxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
+import axios from "axios";
 
 dotenv.config();
 
@@ -24,6 +25,16 @@ export const signup = async (req, res) => {
     location,
   });
   newUser.coordinates = geoData.body.features[0].geometry.coordinates;
+  await axios({
+    method: "POST",
+    url: "http://localhost:8080/send-otp",
+    data: {
+      phoneNo: phoneNo,
+    },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   try {
     const registeredUser = await User.register(newUser, password);
     req.logIn(registeredUser, async (err) => {

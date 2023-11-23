@@ -9,13 +9,14 @@ import "./App.css";
 import { useState } from "react";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
+import { Box } from "@mui/joy";
 
 const App = () => {
   const [user, setUser] = useState(null);
   return (
     <div>
       <Navbar user={user} />
-      <Container className="my-3">
+      <Box sx={{ display: "flex", justifyContent: "center", my: 5 }}>
         <Routes>
           <Route path="/" element={<Home user={user} />} />
           {/* <Route path="/account" element={<Account />} /> */}
@@ -23,7 +24,7 @@ const App = () => {
           <Route path="/auth/signin" element={<Signin setUser={setUser} />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-      </Container>
+      </Box>
       <Footer />
     </div>
   );
