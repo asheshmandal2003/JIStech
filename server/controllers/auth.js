@@ -10,7 +10,7 @@ const geocodingClient = mapboxGeocoding({
 
 export const signup = async (req, res) => {
   let { firstName, lastName, phoneNo, location, password } = req.body;
-  phoneNo = "91" + phoneNo;
+  phoneNo = "+91" + phoneNo;
   const geoData = await geocodingClient
     .forwardGeocode({
       query: location,
@@ -39,6 +39,7 @@ export const signin = (req, res) => {
   try {
     res.status(200).json(req.user);
   } catch (error) {
+    console.log(error);
     res.status(401).json({ message: "Invalid Username and Password!" });
   }
 };

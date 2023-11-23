@@ -1,10 +1,9 @@
-import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Signup = (props) => {
+const Signup = ({ setUser }) => {
   const navigate = useNavigate();
   const validations = yup.object({
     firstName: yup
@@ -51,7 +50,10 @@ const Signup = (props) => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        setUser(res.data);
+        navigate("/");
+      })
       .catch((err) => console.log(err.message));
     onSubmitProps.resetForm();
   }
@@ -198,8 +200,7 @@ const Signup = (props) => {
                 <div className="text-center">
                   Already have an account?{" "}
                   <a
-                    href="#"
-                    onClick={props.onSigninLinkClick}
+                    onClick={() => navigate("/auth/signin")}
                     className="text-dark"
                   >
                     Login
@@ -214,8 +215,8 @@ const Signup = (props) => {
   );
 };
 
-Signup.propTypes = {
-  onSigninLinkClick: PropTypes.func.isRequired,
-};
+// Signup.propTypes = {
+//   onSigninLinkClick: PropTypes.func.isRequired,
+// };
 
 export default Signup;
