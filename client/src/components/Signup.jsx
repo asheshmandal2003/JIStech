@@ -118,13 +118,7 @@ const Signup = ({ setUser }) => {
       <Typography variant="h5" mb={5}>
         Sign Up
       </Typography>
-      <Box
-        component="form"
-        onSubmit={formik.handleSubmit}
-        className="needs-validation"
-        noValidate
-        autoComplete="off"
-      >
+      <Box component="form" onSubmit={formik.handleSubmit} autoComplete="off">
         <Stack spacing={5}>
           {/* Name */}
           <Box sx={{ display: "flex", gap: 2 }}>
