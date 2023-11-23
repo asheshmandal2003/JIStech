@@ -15,7 +15,7 @@ function NavigationBar({ user }) {
     // }, []);
 
     return (
-        <Navbar expand="lg" className="py-3 fixed-top" style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)' }}>
+        <Navbar expand="lg" className="py-3 fixed-top" style={{ background: 'linear-gradient(90deg, #2C1E4A, #7276AB)', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)' }}>
             <Container>
                 <Navbar.Brand href="/">
                     <img
