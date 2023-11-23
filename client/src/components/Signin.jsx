@@ -2,9 +2,26 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Card,
+  FormControl,
+  OutlinedInput,
+  InputLabel,
+  TextField,
+  InputAdornment,
+  Button,
+  Stack,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useState } from "react";
 
 const Signin = ({ setUser }) => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
   const validations = yup.object({
     phoneNo: yup.string().max(10, "Invalid phone number").required(),
     password: yup
@@ -12,6 +29,7 @@ const Signin = ({ setUser }) => {
       .min(8, "Your password must contain 8 characters!")
       .required("Password is required!"),
   });
+
   const formik = useFormik({
     initialValues: {
       phoneNo: "",
@@ -20,134 +38,131 @@ const Signin = ({ setUser }) => {
     onSubmit: (values, onSubmitProps) => signin(values, onSubmitProps),
     validationSchema: validations,
   });
+
   async function signin(values, onSubmitProps) {
     const formdata = new FormData();
     for (let value in values) {
-      if (value == "phoneNo") {
+      if (value === "phoneNo") {
         formdata.append(value, "+91" + values[value]);
       } else {
         formdata.append(value, values[value]);
       }
     }
-    await axios({
-      method: "POST",
-      url: "http://localhost:8080/auth/signin",
-      data: formdata,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        setUser(res.data);
-        navigate("/");
-      })
-      .catch((err) => console.log(err.message));
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/auth/signin",
+        formdata,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setUser(response.data);
+      navigate("/");
+    } catch (err) {
+      console.log(err.message);
+    }
+
     onSubmitProps.resetForm();
   }
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+
   return (
-    <section className="h-100">
-      <div className="container h-100">
-        <div className="row justify-content-sm-center h-100">
-          <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-            <div className="card shadow-lg">
-              <div className="card-body p-5">
-                <h1 className="fs-4 card-title fw-bold mb-4">Login</h1>
-                <form
-                  onSubmit={formik.handleSubmit}
-                  className="needs-validation"
-                  noValidate
-                  autoComplete="off"
-                >
-                  {/* Email */}
-                  <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="phoneNo">
-                      Phone No
-                    </label>
-                    <div className="input-group">
-                      <span className="input-group-text" id="basic-addon1">
-                        +91
-                      </span>
-                      <input
-                        id="phoneNo"
-                        type="text"
-                        className={`form-control ${
-                          formik.touched.phoneNo &&
-                          formik.errors.phoneNo &&
-                          "is-invalid"
-                        }`}
-                        name="phoneNo"
-                        value={formik.values.phoneNo}
-                        onChange={formik.handleChange}
-                        required
-                      />
-                    </div>
-                    {formik.touched.phoneNo && formik.errors.phoneNo && (
-                      <div className="invalid-feedback">
-                        {formik.errors.phoneNo}
-                      </div>
-                    )}
-                  </div>
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: 520,
+        bgcolor: "#fff",
+        p: 5,
+        mx: "auto",
+        mt: 5,
+      }}
+    >
+      <Typography variant="h5" mb={3}>
+        Login
+      </Typography>
+      <Box
+        component="form"
+        onSubmit={formik.handleSubmit}
+        className="needs-validation"
+        noValidate
+        autoComplete="off"
+        width="100%"
+      >
+        <Stack spacing={3} width="100%">
+          {/* Phone Number */}
+          <FormControl fullWidth>
+            <InputLabel htmlFor="phoneNo">Phone No</InputLabel>
+            <OutlinedInput
+              id="phoneNo"
+              type="text"
+              label="Phone No"
+              name="phoneNo"
+              value={formik.values.phoneNo}
+              onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.phoneNo) &&
+                Boolean(formik.errors.phoneNo)
+              }
+              helperText={
+                Boolean(formik.touched.phoneNo) && formik.errors.phoneNo
+              }
+              InputProps={{
+                startAdornment: <InputAdornment>+91</InputAdornment>,
+              }}
+            />
+          </FormControl>
 
-                  {/* Password */}
-                  <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="password">
-                      Password
-                    </label>
-                    <input
-                      id="password"
-                      type="password"
-                      className={`form-control ${
-                        formik.touched.password &&
-                        formik.errors.password &&
-                        "is-invalid"
-                      }`}
-                      name="password"
-                      value={formik.values.password}
-                      onChange={formik.handleChange}
-                      required
-                    />
-                    {formik.touched.password && formik.errors.password && (
-                      <div className="invalid-feedback">
-                        {formik.errors.password}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Remember Me and Login Button */}
-                  <div className="d-flex align-items-center">
-                    <div className="form-check">
-                      <input
-                        type="checkbox"
-                        name="remember"
-                        id="remember"
-                        className="form-check-input"
-                      />
-                      <label htmlFor="remember" className="form-check-label">
-                        Remember Me
-                      </label>
-                    </div>
-                    <button type="submit" className="btn btn-primary ms-auto">
-                      Login
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <div className="card-footer py-3 border-0">
-                <div className="text-center">
-                  Do not have an account?{" "}
-                  <a
-                    onClick={() => navigate("/auth/signup")}
-                    className="text-dark"
+          {/* Password */}
+          <FormControl fullWidth>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <OutlinedInput
+              id="password"
+              type={showPassword ? "text" : "password"}
+              label="Password"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.password) &&
+                Boolean(formik.errors.password)
+              }
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
                   >
-                    Create One
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
+          <Button type="submit" fullWidth variant="contained">
+            Login
+          </Button>
+        </Stack>
+      </Box>
+      <Typography mt={3}>
+        Don't have an account?{" "}
+        <Typography
+          color="primary"
+          onClick={() => navigate("/auth/signup")}
+          sx={{ cursor: "pointer" }}
+        >
+          Sign Up
+        </Typography>
+      </Typography>
+    </Card>
   );
 };
 

@@ -2,7 +2,7 @@ import {Col, Row, Container } from 'react-bootstrap';
 
 function Hero() {
     return (
-        <div style={{ color: 'white', height: '100vh' }}>
+        <div className='m-5 p-5' style={{ color: 'white', height: '100vh' }}>
             <Container>
                 <Row>
                     <Col>
