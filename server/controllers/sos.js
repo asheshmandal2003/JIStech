@@ -70,7 +70,7 @@ export const sendSOS = async (req, res) => {
         await client.messages
           .create({
             from: process.env.TWILIO_PHONE_NUMBER,
-            to: `+91${user.phoneNo}`,
+            to: user.phoneNo,
             body: "Testing...",
           })
           .catch((err) =>
@@ -82,7 +82,7 @@ export const sendSOS = async (req, res) => {
         await client.messages
           .create({
             from: process.env.TWILIO_PHONE_NUMBER,
-            to: `+91${user.phoneNo}`,
+            to: user.phoneNo,
             body: "Testing...",
           })
           .catch((err) =>
