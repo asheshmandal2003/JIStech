@@ -14,6 +14,7 @@ function Services({ user }) {
         const formdata = new FormData();
         formdata.append("longitude", location.longitude);
         formdata.append("latitude", location.latitude);
+        formdata.append("name", user.firstName + " " + user.lastName);
         await axios({
           method: "POST",
           url: `http://localhost:8080/${user._id}/sos`,

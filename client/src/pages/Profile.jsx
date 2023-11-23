@@ -1,63 +1,74 @@
-import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
-
-const Profile = ({ user = {}, handleLogout = () => { } }) => {
-    const { register, handleSubmit, errors } = useForm();
-
-    const onSubmit = (data) => {
-        console.log(data);
-    };
-
-    return (
-        <Container>
-            <Row className="justify-content-md-center text-center mb-4">
-                <Col md={8}>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Profile Page</Card.Title>
-                            <Card.Text>Welcome, {user.name}!</Card.Text>
-                            <Card.Text>Email: {user.email}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col md={6}>
-                    <Form onSubmit={handleSubmit(onSubmit)}>
-                        <Form.Group>
-                            <Form.Label>Name:</Form.Label>
-                            <Form.Control name="name" defaultValue={user.name} ref={register({ required: true })} />
-                            {errors.name && <p>This field is required</p>}
-                        </Form.Group>
-
-                        <Form.Group>
-                            <Form.Label>Email:</Form.Label>
-                            <Form.Control name="email" defaultValue={user.email} ref={register({ required: true })} />
-                            {errors.email && <p>This field is required</p>}
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">Update Profile</Button>
-                    </Form>
-                </Col>
-            </Row>
-
-            <Row className="justify-content-md-center text-center mt-4">
-                <Col md={8}>
-                    <Button variant="danger" onClick={handleLogout}>Logout</Button>
-                </Col>
-            </Row>
-        </Container>
-    );
-};
-
-Profile.propTypes = {
-    user: PropTypes.shape({
-        name: PropTypes.string,
-        email: PropTypes.string,
-    }),
-    handleLogout: PropTypes.func,
+import { Avatar, Box, Typography } from "@mui/joy";
+import { Card, Stack, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+const Profile = ({ user, setUser }) => {
+  const navigate = useNavigate();
+  const logOut = () => {
+    setUser(null);
+    navigate("/");
+  };
+  return (
+    <>
+      {user !== null && (
+        <Card sx={{ width: 450, p: 5 }}>
+          <Stack
+            spacing={5}
+            width="100%"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Avatar variant="outlined" sx={{ height: 80, width: 80 }} />
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography>Name</Typography>
+              <Typography>{user.firstName + " " + user.lastName}</Typography>
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography>Location</Typography>
+              <Typography>{user.location}</Typography>
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography>Phone No</Typography>
+              <Typography>{user.phoneNo}</Typography>
+            </Box>
+            <Box width="100%" display="flex" gap={2}>
+              <Button color="success" variant="contained" fullWidth>
+                Edit
+              </Button>
+              <Button
+                color="error"
+                variant="contained"
+                onClick={logOut}
+                fullWidth
+              >
+                Log out
+              </Button>
+            </Box>
+          </Stack>
+        </Card>
+      )}
+    </>
+  );
 };
 
 export default Profile;

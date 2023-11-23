@@ -43,7 +43,7 @@ const findDistance = (source, destination) => {
 export const sendSOS = async (req, res) => {
   try {
     const users = await User.find({});
-    const { longitude, latitude } = req.body;
+    const { longitude, latitude, name } = req.body;
     console.log([Number(longitude), Number(latitude)]);
     users.map((user) =>
       console.log(
@@ -71,7 +71,7 @@ export const sendSOS = async (req, res) => {
           .create({
             from: process.env.TWILIO_PHONE_NUMBER,
             to: user.phoneNo,
-            body: "Testing...",
+            body: `${name} needs your help.\n Please track the location using the url below\n https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`,
           })
           .catch((err) =>
             res.status(500).json({ message: "Internal server error!" })
@@ -83,7 +83,7 @@ export const sendSOS = async (req, res) => {
           .create({
             from: process.env.TWILIO_PHONE_NUMBER,
             to: user.phoneNo,
-            body: "Testing...",
+            body: `${name} needs your help.\n Please track the location using the url below\n https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`,
           })
           .catch((err) =>
             res.status(500).json({ message: "Internal server error!" })
