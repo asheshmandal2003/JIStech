@@ -209,11 +209,11 @@ const Signup = ({ setUser }) => {
                 startAdornment: <InputAdornment>+91</InputAdornment>,
               }}
             />
-            {showBtn && (
+            {/* {showBtn && (
               <Button variant="contained" onClick={sendOTP} sx={{ mt: 3 }}>
                 Verify
               </Button>
-            )}
+            )} */}
           </Box>
 
           {/* Password */}
