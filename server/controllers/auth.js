@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import User from "../models/auth.js";
 import mapboxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
-import axios from "axios";
 
 dotenv.config();
 
@@ -10,37 +9,33 @@ const geocodingClient = mapboxGeocoding({
 });
 
 export const signup = async (req, res) => {
-  let { firstName, lastName, phoneNo, location, password } = req.body;
-  phoneNo = "+91" + phoneNo;
-  const geoData = await geocodingClient
-    .forwardGeocode({
-      query: location,
-      limit: 1,
-    })
-    .send();
-  const newUser = new User({
-    firstName,
-    lastName,
-    phoneNo,
-    location,
-  });
-  newUser.coordinates = geoData.body.features[0].geometry.coordinates;
-  await axios({
-    method: "POST",
-    url: "http://localhost:8080/send-otp",
-    data: {
-      phoneNo: phoneNo,
-    },
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
   try {
-    const registeredUser = await User.register(newUser, password);
-    req.logIn(registeredUser, async (err) => {
-      if (err) return err;
-      res.status(201).json(registeredUser);
+    let { firstName, lastName, phoneNo, location, password } = await req.body;
+    console.log(location);
+    phoneNo = "+91" + phoneNo;
+    const geoData = await geocodingClient
+      .forwardGeocode({
+        query: location,
+        limit: 1,
+      })
+      .send();
+    console.log(geoData);
+    const newUser = new User({
+      firstName,
+      lastName,
+      phoneNo,
+      location,
     });
+    newUser.coordinates = geoData.body.features[0].geometry.coordinates;
+    try {
+      const registeredUser = await User.register(newUser, password);
+      req.logIn(registeredUser, async (err) => {
+        if (err) return err;
+        res.status(201).json(registeredUser);
+      });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
