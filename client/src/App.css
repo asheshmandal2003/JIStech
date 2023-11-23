@@ -6,6 +6,7 @@
 }
 
 body {
+  font-family: 'Lastica', sans-serif;
   background: linear-gradient(90deg, #2C1E4A, #7276AB);
   color: white;
   /* padding-top: 70px; */
@@ -45,4 +46,8 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+footer {
+  flex-shrink: 0;
 }

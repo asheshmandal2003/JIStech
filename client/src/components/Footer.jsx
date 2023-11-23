@@ -4,8 +4,9 @@ import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg
 
 const Footer = () => {
     return (
-        <footer>
-            <div style={{ borderTop: '1px solid #f2f2f2', width: '80%', margin: '0 auto' }}></div>
+        <footer style={{ flexShrink: '0', boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+        }}>
+            <div style={{ border: '1px solid #f2f2f2', width: '80%', margin: '0 auto' }}></div>
             <Container fluid className="footer text-center mt-5">
                 <Row className="mb-4 p-2">
                     <Col>
@@ -31,9 +32,9 @@ const Footer = () => {
                         <div style={{ border: '1px solid #f2f2f2', padding: '20px', margin: '20px' }}>
                             <h4>Socials</h4>
                             <div>
-                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faFacebook} /></a>
-                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faTwitter} /></a>
-                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faInstagram} /></a>
+                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faFacebook} size='2x' /></a>
+                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faTwitter} size='2x' /></a>
+                                <a href="#" className="mx-2"><FontAwesomeIcon icon={faInstagram} size='2x' /></a>
                             </div>
                         </div>
                     </Col>

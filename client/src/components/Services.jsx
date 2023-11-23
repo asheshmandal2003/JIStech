@@ -30,7 +30,7 @@ function Services({ user }) {
     );
   }
   return (
-    <div className="m-5 p-5" style={{ color: "white", height: "100vh" }}>
+    <div className="m-5 p-5" style={{ color: "white" }}>
       <Container>
         <Row>
           <Col>
@@ -39,9 +39,8 @@ function Services({ user }) {
               style={{ color: "#2C1E4A", backgroundColor: "white" }}
             >
               <Card.Body>
-                <Card.Title>Community Empowerment</Card.Title>
+                <Card.Title className='m-2 p-2' style={{ fontSize: '30px' }}>Secure Data</Card.Title>
                 <Card.Text>
-                  Join a community of people dedicated to safety and awareness.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -52,7 +51,7 @@ function Services({ user }) {
               style={{ color: "#2C1E4A", backgroundColor: "white" }}
             >
               <Card.Body>
-                <Card.Title>Emergency SOS Alert </Card.Title>
+                <Card.Title style={{ fontSize: '28px' }}>Emergency SOS Alert </Card.Title>
                 {user !== null && (
                   <button className="btn btn-primary" onClick={sendSOS}>
                     Send SOS
@@ -67,8 +66,8 @@ function Services({ user }) {
               style={{ color: "#2C1E4A", backgroundColor: "white" }}
             >
               <Card.Body>
-                <Card.Title>Card Title 3</Card.Title>
-                <Card.Text>Card Text 3</Card.Text>
+                <Card.Title className='m-2 p-2' style={{ fontSize: '30px' }}>24/7 Support</Card.Title>
+                <Card.Text></Card.Text>
               </Card.Body>
             </Card>
           </Col>
