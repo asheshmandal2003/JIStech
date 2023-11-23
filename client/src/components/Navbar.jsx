@@ -58,7 +58,7 @@ function NavigationBar({ user }) {
             {user !== null ? (
               <>
                 <Nav.Link
-                  href="/profile"
+                  onClick={() => navigate("/profile")}
                   className="mx-3"
                   style={{ color: "#D73CBE" }}
                 >
